@@ -795,6 +795,11 @@ abstract class Model
        return self::ensureIndex($keys,$options);
     }
 
+    public static function create_index($keys, $options = array())
+    {
+       return self::createIndex($keys,$options);
+    }
+
     /**
      * Ensure index
      * @param mixed $keys    keys
@@ -805,6 +810,14 @@ abstract class Model
     public static function ensureIndex($keys, $options = array()){
 
         $result = self::connection()->ensure_index(self::collectionName(), $keys, $options);
+
+        return $result;
+
+    }
+
+    public static function createIndex($keys, $options = array()){
+
+        $result = self::connection()->create_index(self::collectionName(), $keys, $options);
 
         return $result;
 
@@ -834,7 +847,7 @@ abstract class Model
      * Return the connection
      *
      * @return MongoDB|null
-     L*/
+     */
     public function getConnection()
     {
         return $this->_connection;
