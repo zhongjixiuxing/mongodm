@@ -387,6 +387,17 @@ class MongoDB
         );
     }
 
+    public function createIndex ($collection_name, $keys, $options = array())
+    {
+        return $this->_call(
+            'create_index', array(
+                'collection_name' => $collection_name,
+                'keys'            => $keys,
+                'options'         => $options
+            )
+        );
+    }
+
     /* Data Management */
 
     /**
@@ -712,6 +723,9 @@ class MongoDB
         switch ($command) {
             case 'ensure_index':
                 $r = $c->ensureIndex($keys, $options);
+                break;
+            case 'create_index':
+                $r = $c->createIndex($keys, $options);
                 break;
             case 'create_collection':
                 $r = $this->_db->createCollection($name, $capped, $size, $max);
