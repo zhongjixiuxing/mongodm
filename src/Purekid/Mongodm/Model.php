@@ -567,14 +567,15 @@ abstract class Model
     *
     * @return Collection
     */
-    public function pagination($criteria=array(), $fields=array(), $limit=0, $skip=0){
-      $collectionName = __CLASS__;
+    public static function pagination($query=array(), $fields=array(), $limit=20, $skip=0, $sort=array()){
+      $modelName = get_called_class();
 
-      $model = new $collectionName();
+      $model = new $modelName();
       $conn = $model->getConnection();
+      $conn->connect();
       $db = $conn->getDB();
-      $conn = $db->selectCollection(static::$collection);
-      $lines = $conn->find($criteria, $fields)->skip($skip)->limit($limit);
+      $conn = $db->selectCollection($modelName::$collection);
+      $lines = $conn->find($query, $fields)->sort($sort)->skip($skip)->limit($limit);
 
       return \Purekid\Mongodm\Hydrator::hydrate($modelName, $lines, "collection" , true);
     }
