@@ -210,7 +210,7 @@ abstract class Model
               switch($key){
                 case '$push':
                   foreach($val as $k1 => $v1){
-                    if(key($v1) == '$each'){
+                    if(is_array($v1) && key($v1) == '$each'){
                       $vals = $v1['$each'];
                       foreach($vals as $k11 => $ele){
                         $this->cleanData[key($val)][] = $ele;
