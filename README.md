@@ -1,3 +1,8 @@
+* fork from https://github.com/purekid/mongodm
+* you can download at https://packagist.org/packages/faevatech/mongodm
+- 两年前从事PHP技术栈，需要mongodb的客户端，当时采用这个客户端是因为可以正常使用且满足项目的需求. 后来原作者不再继续维护发展这个客户端了, 自己只好拿过来修修。`目前（2019.1.6）, 这个插件本人也不再维护，若你还在使用，谨慎`
+
+
 ![image](http://blog.missyi.com/wp-content/uploads/2014/09/mongodm.png)
 ======= 
 
